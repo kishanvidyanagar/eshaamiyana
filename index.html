@@ -56,6 +56,7 @@
         .popup-body {
             padding: 10px;
             height: 80vh;
+            position: relative;
         }
 
         .popup-iframe {
@@ -63,6 +64,22 @@
             height: 100%;
             border: none;
             border-radius: 10px;
+        }
+
+        .popup-fallback {
+            margin: 14px 0 0;
+            font-size: 14px;
+            color: #444;
+        }
+
+        .popup-fallback a {
+            color: #ff6600;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .popup-fallback a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -89,7 +106,8 @@
     <!-- Home Section -->
     <div class="container" id="home">
         <h2>Welcome to eshaamiyana</h2>
-        <p>Your one-stop solution for all event tent and decoration rentals.</p>
+        <p>Complete event solutions with full support from planning to execution. Backed by 50+ trusted vendors, eshaamiyana is committed to making every celebration smooth, memorable, and stress-free.
+</p>
     </div>
 
     <!-- Services Section -->
@@ -135,7 +153,8 @@
     <!-- About Section -->
     <div class="container" id="about">
         <h2>About Us</h2>
-        <p>At eShaamiyana, we bring your events to life with premium tents, decor, lighting, and event essentials.</p>
+        <p>Book your event through eshaamiyana and let us handle the coordination. We work with trusted vendors to deliver the best service at transparent prices, with no extra service charges.
+</p>
     </div>
 
     <!-- Contact Section -->
@@ -173,6 +192,9 @@
                     loading="lazy"
                     title="Booking Form"
                 ></iframe>
+                <div class="popup-fallback">
+                    <p>If the form does not load, <a href="https://tally.so/r/eq5Yrk" target="_blank" rel="noopener">open the booking page directly</a>.</p>
+                </div>
             </div>
         </div>
     </div>
@@ -187,14 +209,20 @@
 
         const TALLY_URL = "https://tally.so/embed/eq5Yrk?alignLeft=1&hideTitle=1&transparentBackground=1";
 
+        function resetPopup() {
+            formFrame.style.display = "";
+            formFrame.src = "";
+        }
+
         function openForm() {
             backdrop.style.display = "flex";
+            resetPopup();
             formFrame.src = TALLY_URL;
         }
 
         function closeForm() {
             backdrop.style.display = "none";
-            formFrame.src = "";
+            resetPopup();
         }
 
         openPopup.addEventListener("click", openForm);
